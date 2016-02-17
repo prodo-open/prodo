@@ -1,7 +1,17 @@
+- year = new Date().getFullYear()
+
 doctype html
 html
 	head
-		title= title
+		title=title
+		link(rel='stylesheet', href='/stylesheets/avenir/avenir-next.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
-		block content
+		header
+			h1 Prodo
+			block header
+		section
+			block content
+		footer
+			| &copy; #{year} / powered by 
+			a(href='https://designplox.com/') designplox

@@ -1,0 +1,119 @@
+/* Colors */
+$colorPrimary: #3F51B5;
+$colorPrimaryDark: #303F9F;
+$colorAccent: #448AFF;
+$colorAccentDark: #2962FF;
+/* Styles */
+*,
+*:before,
+*:after {
+	border-radius: 0;
+	box-sizing: border-box;
+	font-weight: normal;
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+body {
+	background: #FFF;
+	color: #111;
+	cursor: default;
+	display: flex;
+	flex-direction: column;
+	font: normal 1em/1 'Avenir Next', sans-serif;
+	min-height: 100vh;
+}
+a {
+	color: $colorAccent;
+	text-decoration: none;
+	transition: all 300ms ease;
+	&:hover {
+		color: $colorAccentDark;
+	}
+}
+form {
+	label,
+	p {
+		display: block;
+		line-height: 1;
+		margin: 2em 0;
+	}
+	input {
+		appearance: none;
+		background: #EEE;
+		border: none;
+		font: inherit;
+		padding: 1em;
+	}
+	button {
+		@extend input;
+		background: $colorPrimary;
+		color: #FFF;
+		cursor: pointer;
+		transition: all 200ms ease;
+		&:active {
+			background: $colorPrimaryDark;
+		}
+	}
+}
+h1,
+h2,
+h3 {
+	margin: 1rem 0;
+}
+h1 {
+	font-size: 2em;
+}
+h2 {
+	font-size: 1.5em;
+}
+h3 {
+	font-size: 1.25em;
+}
+img {
+	border: none;
+	max-width: 100%;
+	vertical-align: top;
+}
+p {
+	line-height: 1.6;
+	margin: 1em 0;
+}
+pre {
+	font-family: 'Consolas', monospace;
+	line-height: 1.5;
+}
+/* Layout */
+header,
+section,
+footer {
+	background: #F9F9F9;
+	margin: 0 auto;
+	width: 90%;
+}
+header {
+	background: $colorPrimary;
+	color: #FFF;
+	display: flex;
+	h1,
+	a {
+		color: #FFF;
+		font-size: 1em;
+		margin: 0;
+		padding: 1em;
+	}
+	a:hover {
+		background-color: $colorPrimaryDark;
+		color: #FFF;
+	}
+}
+section {
+	flex: 1;
+	padding: 1em 2em;
+}
+footer {
+	background: #EEE;
+	color: #CCC;
+	padding: 1em;
+	text-align: center;
+}
