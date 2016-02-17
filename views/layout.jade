@@ -1,11 +1,16 @@
-- year = new Date().getFullYear()
+- var year = new Date().getFullYear()
 
 doctype html
 html
 	head
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+		meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+
 		title=title
-		link(rel='stylesheet', href='/stylesheets/avenir/avenir-next.css')
-		link(rel='stylesheet', href='/stylesheets/style.css')
+
+		link(rel="stylesheet", href="/stylesheets/avenir/avenir-next.css")
+		link(rel="stylesheet", href="/stylesheets/style.css")
+
 	body
 		header
 			h1 Prodo
@@ -13,5 +18,6 @@ html
 		section
 			block content
 		footer
-			| &copy; #{year} / powered by 
-			a(href='https://designplox.com/') designplox
+			| &copy; #{year} &middot; 
+			a(href="https://github.com/prodo-open") Prodo
+				sup open

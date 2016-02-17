@@ -21,7 +21,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	font: normal 1em/1 'Avenir Next', sans-serif;
-	min-height: 100vh;
+	height: 100vh;
 }
 a {
 	color: $colorAccent;
@@ -59,16 +59,17 @@ form {
 h1,
 h2,
 h3 {
-	margin: 1rem 0;
+	font-weight: 100;
+	margin: 2rem 0;
 }
 h1 {
-	font-size: 2em;
+	font-size: 2.5em;
 }
 h2 {
-	font-size: 1.5em;
+	font-size: 2em;
 }
 h3 {
-	font-size: 1.25em;
+	font-size: 1.5em;
 }
 img {
 	border: none;
@@ -77,20 +78,20 @@ img {
 }
 p {
 	line-height: 1.6;
-	margin: 1em 0;
+	margin: 2em 0;
 }
 pre {
 	font-family: 'Consolas', monospace;
 	line-height: 1.5;
 }
-/* Layout */
-header,
-section,
-footer {
-	background: #F9F9F9;
-	margin: 0 auto;
-	width: 90%;
+ul {
+	margin: 2em 0;
+	li {
+		list-style: square;
+		margin: 1em 0 1em 1em;
+	}
 }
+/* Layout */
 header {
 	background: $colorPrimary;
 	color: #FFF;
@@ -99,6 +100,7 @@ header {
 	a {
 		color: #FFF;
 		font-size: 1em;
+		font-weight: 300;
 		margin: 0;
 		padding: 1em;
 	}
@@ -106,14 +108,22 @@ header {
 		background-color: $colorPrimaryDark;
 		color: #FFF;
 	}
+	.right {
+		display: flex;
+		margin-left: auto;
+	}
 }
 section {
 	flex: 1;
-	padding: 1em 2em;
+	padding: 1em 3em;
+	overflow-y: scroll;
 }
 footer {
-	background: #EEE;
-	color: #CCC;
+	background: #F9F9F9;
+	color: #999;
+	font-size: 0.75em;
 	padding: 1em;
-	text-align: center;
+	sup {
+		margin-left: 0.5em;
+	}
 }

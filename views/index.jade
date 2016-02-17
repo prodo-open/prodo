@@ -1,14 +1,17 @@
 extends layout
 
 block header
-	a(href='#') Dashboard
-	a(href='#') Reports
-	a(href='#') Devices
-	a(href='#') Settings
+	a(href="#") Dashboard
+	a(href="#") Reports
+	a(href="#") Devices
+	a(href="#") Settings
+	.right
+		a(href="#") Profile
+		a(href="#") Logout
 
 block content
 	h1=title
 	p
 		| Welcome to 
-		a(href='#') #{title}
 	
+		a(href="#") #{title}
