@@ -10,7 +10,6 @@ var express = require('express'),
 var app = express();
 
 // sass
-
 app.use(sass({
 	src: path.join(__dirname, 'public'),
 	outputStyle: 'compressed'
@@ -34,7 +33,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-
 var routes = require('./routes/index'),
 	users = require('./routes/users');
 
@@ -71,6 +69,5 @@ app.use(function(err, req, res, next) {
 		error: {}
 	});
 });
-
 
 module.exports = app;
