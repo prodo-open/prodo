@@ -37,12 +37,22 @@ form {
 		display: block;
 		line-height: 1;
 		margin: 2em 0;
+		&.error {
+			background: #F44336;
+			color: #FFF;
+			display: inline-block;
+			margin: 0;
+			max-width: 20em;
+			padding: 1em;
+		}
 	}
 	input {
 		appearance: none;
 		background: #EEE;
 		border: none;
 		font: inherit;
+		line-height: normal;
+		min-width: 20em;
 		padding: 1em;
 	}
 	button {
@@ -50,6 +60,8 @@ form {
 		background: $colorPrimary;
 		color: #FFF;
 		cursor: pointer;
+		min-width: 0;
+		padding: 1em 2em;
 		transition: all 200ms ease;
 		&:active {
 			background: $colorPrimaryDark;
@@ -97,7 +109,8 @@ header {
 	color: #FFF;
 	display: flex;
 	h1,
-	a {
+	a,
+	span {
 		color: #FFF;
 		font-size: 1em;
 		font-weight: 300;

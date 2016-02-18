@@ -6,7 +6,7 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 		meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
 
-		title=title
+		title Prodo
 
 		link(rel="stylesheet", href="/stylesheets/avenir/avenir-next.css")
 		link(rel="stylesheet", href="/stylesheets/style.css")
@@ -14,17 +14,18 @@ html
 	body
 		header
 			h1 Prodo
-			a(href="/") Dashboard
-			a(href="/reports") Reports
-			a(href="/devices") Devices
-			a(href="/users") Users
-			a(href="/Settings") Settings
-			block header
-			.right
-				a(href="/logout") Logout
+			if user
+				a(href="/") Dashboard
+				a(href="/reports") Reports
+				a(href="/devices") Devices
+				a(href="/users") Users
+				a(href="/settings") Settings
+				block header
+				.right
+					span Hello, #{user.name}
+					a(href="/users/logout") Logout
+			else
+				.right
+					a(href="/users/login") Login
 		section
 			block content
-		footer
-			| &copy; #{year} &middot; 
-			a(href="https://github.com/prodo-open") Prodo
-				sup open
