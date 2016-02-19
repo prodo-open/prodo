@@ -3,6 +3,8 @@ $colorPrimary: #3F51B5;
 $colorPrimaryDark: #303F9F;
 $colorAccent: #448AFF;
 $colorAccentDark: #2962FF;
+$colorMessage: #2196F3;
+$colorError: #F44336;
 /* Styles */
 *,
 *:before,
@@ -37,13 +39,17 @@ form {
 		display: block;
 		line-height: 1;
 		margin: 2em 0;
-		&.error {
-			background: #F44336;
+		&.error,
+		&.message {
+			background: $colorError;
 			color: #FFF;
 			display: inline-block;
 			margin: 0;
 			max-width: 20em;
 			padding: 1em;
+		}
+		&.message {
+			background: $colorMessage;
 		}
 	}
 	input {
@@ -130,13 +136,4 @@ section {
 	flex: 1;
 	padding: 1em 3em;
 	overflow-y: scroll;
-}
-footer {
-	background: #F9F9F9;
-	color: #999;
-	font-size: 0.75em;
-	padding: 1em;
-	sup {
-		margin-left: 0.5em;
-	}
 }
