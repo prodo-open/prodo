@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1 Install Prodo
+	form(action="/install", method="POST")
+		h2 Create your first user
+		if error
+			p.error=error
+		label
+			input(type="text", name="name", placeholder="Name", value="#{name || ''}")
+		label
+			input(type="email", name="email", placeholder="Email", value="#{email || ''}")
+		label
+			input(type="password", name="password", placeholder="Password")
+		p
+			button(type="submit") Install
