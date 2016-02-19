@@ -1,6 +1,6 @@
 var User = require('../models/user');
 
-exports.auth = function(req, res, next) {
+exports.authenticated = function(req, res, next) {
 	if (exports.isLoggedIn(req)) {
 		User.findOne({
 			token: req.cookies.token

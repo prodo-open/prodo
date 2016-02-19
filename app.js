@@ -50,7 +50,7 @@ var routes = require('./routes/index'),
 	users = require('./routes/users');
 
 app.use('/', routes);
-app.use('/dashboard', auth.auth, dashboard);
+app.use('/dashboard', auth.authenticated, dashboard);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
