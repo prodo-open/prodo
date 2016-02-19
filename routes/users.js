@@ -3,6 +3,27 @@ var express = require('express'),
 
 var auth = require('../prodo/auth');
 
+var User = require('../models/user');
+
+router.get('/', auth.authenticated, function(req, res, next) {
+	User.find(function(err, users) {
+		if (err) {
+			return next(err);
+		}
+
+		if (!users) {
+			var err = new Error('Not Found');
+			err.status = 404;
+
+			return next(err);
+		}
+
+		res.render('users/index', {
+			users: users
+		})
+	});
+});
+
 router.get('/login', function(req, res, next) {
 	if (auth.isLoggedIn(req)) {
 		res.redirect('/');

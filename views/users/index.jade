@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+	h1 Users
+	p
+		a.button(href="/users/new") Add user
+	table
+		thead
+			tr
+				th Name
+				th(colspan="3") Email
+		tbody
+			each user in users
+				tr
+					td=user.name
+					td
+						a(href="mailto:#{user.email}")=user.email
+					td.icon
+						a.user-edit(href="/users/#{user._id}/edit", title="Edit user")
+					td.icon
+						a.user-remove(href="/users/#{user._id}/remove", title="Remove user")
