@@ -32,6 +32,18 @@ a {
 	&:hover {
 		color: $colorAccentDark;
 	}
+	&.button {
+		background: $colorPrimary;
+		color: #FFF;
+		cursor: pointer;
+		display: inline-block;
+		min-width: 0;
+		padding: 0.5em 1em;
+		transition: all 200ms ease;
+		&:active {
+			background: $colorPrimaryDark;
+		}
+	}
 }
 form {
 	label,
@@ -101,6 +113,52 @@ p {
 pre {
 	font-family: 'Consolas', monospace;
 	line-height: 1.5;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: left;
+	width: 100%;
+	vertical-align: middle;
+	thead {
+		background: #F9F9F9;
+	}
+	tbody {
+		tr:nth-child(even) {
+			background: #F6F6F6;
+		}
+	}
+	th,
+	td {
+		border: 1px solid #EEE;
+		padding: 1em;
+		&.icon {
+			padding: 0;
+			position: relative;
+			text-align: center;
+			width: 3em;
+			a {
+				display: block;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				&.user-edit,
+				&.user-remove {
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: 2em;
+				}
+				&.user-edit {
+					background-image: url('/images/icons/user-edit.png');
+				}
+				&.user-remove {
+					background-image: url('/images/icons/user-remove.png');
+				}
+			}
+		}
+	}
 }
 ul {
 	margin: 2em 0;
