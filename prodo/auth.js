@@ -24,9 +24,9 @@ exports.auth = function(req, res, next) {
 	}
 };
 
-exports.login = function(username, password, callback) {
+exports.login = function(email, password, callback) {
 	User.findOne({
-		username: username,
+		email: email,
 		password: require('crypto').createHash('sha256').update(password).digest('hex')
 	}, function(err, user) {
 		if (typeof callback === 'function') {

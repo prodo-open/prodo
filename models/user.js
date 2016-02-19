@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	username: {
+	email: {
 		type: String,
 		index: true,
 		unique: true
@@ -11,10 +11,6 @@ var schema = new mongoose.Schema({
 		select: false
 	},
 	name: String,
-	email: {
-		type: String,
-		unique: true
-	},
 	token: {
 		type: String,
 		unique: true

@@ -12,8 +12,8 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-	if (req.body.username && req.body.password) {
-		auth.login(req.body.username, req.body.password, function(err, user) {
+	if (req.body.email && req.body.password) {
+		auth.login(req.body.email, req.body.password, function(err, user) {
 			if (err) {
 				return next(err);
 			}
@@ -24,16 +24,16 @@ router.post('/login', function(req, res, next) {
 				res.redirect('/');
 			} else {
 				res.render('login', {
-					username: req.body.username,
-					error: 'Username / password incorrect'
+					email: req.body.email,
+					error: 'Email / password incorrect'
 				});
 			}
 		});
 	} else {
-		var error = new Error('Not found');
-		error.status = 400;
-
-		next(error);
+		res.render('login', {
+			email: req.body.email,
+			error: 'Email / password missing'
+		});
 	}
 });
 
