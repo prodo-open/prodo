@@ -3,6 +3,8 @@ $colorPrimary: #3F51B5;
 $colorPrimaryDark: #303F9F;
 $colorAccent: #448AFF;
 $colorAccentDark: #2962FF;
+$colorGrey: #9E9E9E;
+$colorGreyDark: #616161;
 $colorMessage: #2196F3;
 $colorSuccess: #4CAF50;
 $colorError: #F44336;
@@ -68,6 +70,13 @@ form {
 		strong {
 			display: block;
 			margin-bottom: 1em;
+		}
+		button:not(:first-of-type) {
+			background: $colorGrey;
+			margin-left: 1em;
+			&:active {
+				background: $colorGreyDark;
+			}
 		}
 	}
 	input {
