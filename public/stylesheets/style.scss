@@ -63,6 +63,10 @@ form {
 		&.message {
 			background: $colorMessage;
 		}
+		strong {
+			display: block;
+			margin-bottom: 1em;
+		}
 	}
 	input {
 		appearance: none;
