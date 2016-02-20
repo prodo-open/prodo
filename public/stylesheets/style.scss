@@ -4,6 +4,7 @@ $colorPrimaryDark: #303F9F;
 $colorAccent: #448AFF;
 $colorAccentDark: #2962FF;
 $colorMessage: #2196F3;
+$colorSuccess: #4CAF50;
 $colorError: #F44336;
 /* Styles */
 *,
@@ -224,5 +225,15 @@ section {
 			overflow: scroll;
 			padding: 0 2em;
 		}
+	}
+	&.slim .content {
+		min-height: 0;
+		min-width: 30vw;
+	}
+	&.success .content {
+		color: $colorSuccess;
+	}
+	&.error .content {
+		color: $colorError;
 	}
 }
