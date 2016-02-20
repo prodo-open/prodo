@@ -28,7 +28,7 @@ var MODAL = new function() {
 				callback(modal);
 			}
 
-			wrapper.stop(true, true).fadeIn(function() {
+			wrapper.stop(true, true).fadeIn('fast', function() {
 				$(document).on('click keyup', function(e) {
 					if (e.type === 'click' && ($(e.target).hasClass('modal') || $(e.target).hasClass('close')) || e.type === 'keyup' && e.which === 27) {
 						_this.hide();
@@ -39,7 +39,7 @@ var MODAL = new function() {
 	};
 
 	_this.hide = function(callback) {
-		wrapper.stop(true, true).fadeOut(function() {
+		wrapper.stop(true, true).fadeOut('fast', function() {
 			wrapper.removeClass().addClass('modal-wrapper');
 
 			modal.html('');
