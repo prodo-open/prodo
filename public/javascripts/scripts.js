@@ -1,6 +1,10 @@
 var MODAL = new function() {
 	var _this = this;
 
+	_this.SLIM = 'slim';
+	_this.SUCCESS = 'success';
+	_this.ERROR = 'error';
+
 	var wrapper = $('.modal-wrapper'),
 		modal = $('.content', wrapper);
 
@@ -17,12 +21,12 @@ var MODAL = new function() {
 			modal.html(content);
 
 			if (style) {
-				wrapper.addClass(style);
+				wrapper.addClass(typeof style === 'string' ? style : style.join(' '));
 			}
 
 			wrapper.stop(true, true).fadeIn(function() {
 				$(document).on('click keyup', function(e) {
-					if (e.type === 'click' && $(e.target).hasClass('modal') || e.type === 'keyup' && e.which === 27) {
+					if (e.type === 'click' && ($(e.target).hasClass('modal') || $(e.target).hasClass('close')) || e.type === 'keyup' && e.which === 27) {
 						_this.hide();
 					}
 				});
