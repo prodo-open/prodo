@@ -168,7 +168,7 @@ ul {
 	}
 }
 /* Layout */
-header {
+nav {
 	background: $colorPrimary;
 	color: #FFF;
 	display: flex;
@@ -181,7 +181,8 @@ header {
 		margin: 0;
 		padding: 1em;
 	}
-	a:hover {
+	a:hover,
+	a.active {
 		background-color: $colorPrimaryDark;
 		color: #FFF;
 	}

@@ -5,7 +5,13 @@ var auth = require('../prodo/auth');
 
 var User = require('../models/user');
 
-router.get('/', auth.authenticated, function(req, res, next) {
+var nav = function(req, res, next) {
+	res.locals.activeLink = 'users';
+
+	next();
+};
+
+router.get('/', auth.authenticated, nav, function(req, res, next) {
 	User.find(function(err, users) {
 		if (err) {
 			return next(err);

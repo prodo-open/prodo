@@ -1,5 +1,7 @@
 - var year = new Date().getFullYear()
 
+- var nav = ['Dashboard', 'Messages', 'Devices', 'Users', 'Settings']
+
 doctype html
 html
 	head
@@ -12,14 +14,15 @@ html
 		link(rel="stylesheet", href="/stylesheets/style.css")
 
 	body
-		header
+		nav
 			h1 Prodo
 			if authUser
-				a(href="/dashboard") Dashboard
-				a(href="/messages") Messages
-				a(href="/devices") Devices
-				a(href="/users") Users
-				a(href="/settings") Settings
+				each link in nav
+					- var href = link.toLowerCase()
+					if href === activeLink
+						a(href="/#{href}", class="active")=link
+					else
+						a(href="/#{href}")=link
 				block header
 				.right
 					span Hello, #{authUser.name}
