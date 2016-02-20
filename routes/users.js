@@ -18,10 +18,7 @@ router.get('/', auth.authenticated, nav, function(req, res, next) {
 		}
 
 		if (!users) {
-			var err = new Error('Not Found');
-			err.status = 404;
-
-			return next(err);
+			return next();
 		}
 
 		res.render('users/index', {
