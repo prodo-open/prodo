@@ -20,7 +20,11 @@ exports.authenticated = function(req, res, next) {
 			}
 		});
 	} else {
-		res.redirect('/users/login');
+		if (req.xhr) {
+			res.status(401).send({});
+		} else {
+			res.redirect('/users/login');
+		}
 	}
 };
 
