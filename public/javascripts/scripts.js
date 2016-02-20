@@ -76,4 +76,14 @@ var AJAX = new function() {
 	this.delete = function(url, data) {
 		return ajax(url, 'DELETE', data);
 	};
+
+	this.form = function(form, callback, callbackError) {
+		$(form).on('submit', function(e) {
+			e.preventDefault();
+
+			var form = $(this);
+
+			ajax(form.attr('action'), form.attr('method'), form.serialize()).then(callback, callbackError);
+		});
+	};
 };
