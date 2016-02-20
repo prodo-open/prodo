@@ -44,3 +44,28 @@ var MODAL = new function() {
 		});
 	};
 };
+
+var AJAX = new function() {
+	var ajax = function(url, method, data) {
+		return $.ajax(url, {
+			method: method,
+			data: data
+		});
+	};
+
+	this.get = function(url) {
+		return ajax(url, 'GET');
+	};
+
+	this.post = function(url, data) {
+		return ajax(url, 'POST', data);
+	};
+
+	this.put = function(url, data) {
+		return ajax(url, 'PUT', data);
+	};
+
+	this.delete = function(url, data) {
+		return ajax(url, 'DELETE', data);
+	};
+};
