@@ -8,7 +8,7 @@ var MODAL = new function() {
 	var wrapper = $('.modal-wrapper'),
 		modal = $('.content', wrapper);
 
-	_this.show = function(content, style) {
+	_this.show = function(content, style, callback) {
 		if (!content) {
 			return;
 		}
@@ -22,6 +22,10 @@ var MODAL = new function() {
 
 			if (style) {
 				wrapper.addClass(typeof style === 'string' ? style : style.join(' '));
+			}
+
+			if (typeof callback === 'function') {
+				callback(modal);
 			}
 
 			wrapper.stop(true, true).fadeIn(function() {
