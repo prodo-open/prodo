@@ -201,3 +201,28 @@ section {
 	padding: 1em 3em;
 	overflow-y: scroll;
 }
+/* Components */
+.modal-wrapper {
+	display: none;
+	.modal {
+		background: rgba(0, 0, 0, 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 9;
+		.content {
+			background: #FFF;
+			max-height: 80%;
+			max-width: 80%;
+			min-height: 20em;
+			min-width: 40em;
+			overflow: scroll;
+			padding: 0 2em;
+		}
+	}
+}
