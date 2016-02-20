@@ -20,7 +20,7 @@ router.get('/', auth.authenticated, function(req, res, next) {
 
 		res.render('users/index', {
 			users: users
-		})
+		});
 	});
 });
 
