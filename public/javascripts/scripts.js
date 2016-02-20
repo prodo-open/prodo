@@ -1,10 +1,14 @@
-var Modal = new function() {
+var MODAL = new function() {
 	var _this = this;
 
 	var wrapper = $('.modal-wrapper'),
 		modal = $('.content', wrapper);
 
 	_this.show = function(content) {
+		if (!content) {
+			return;
+		}
+
 		if (wrapper.is(':visible')) {
 			_this.hide(function() {
 				_this.show(content);
