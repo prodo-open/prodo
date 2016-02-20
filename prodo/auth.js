@@ -10,7 +10,7 @@ exports.authenticated = function(req, res, next) {
 			}
 
 			if (user) {
-				res.locals.user = user;
+				res.locals.authUser = user;
 
 				next();
 			} else {
