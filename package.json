@@ -12,6 +12,7 @@
     "express": "~4.13.1",
     "express-autoprefixer": "^4.0.3",
     "jade": "~1.11.0",
+    "moment": "^2.11.2",
     "mongoose": "^4.4.3",
     "morgan": "~1.6.1",
     "node-sass-middleware": "^0.9.7",
