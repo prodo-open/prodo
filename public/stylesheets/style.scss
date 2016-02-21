@@ -55,14 +55,22 @@ form {
 		display: block;
 		line-height: 1;
 		margin: 2em 0;
+		&.success,
 		&.error,
 		&.message {
 			background: $colorError;
 			color: #FFF;
 			display: inline-block;
+			line-height: 1.5;
 			margin: 0;
 			max-width: 20em;
 			padding: 1em;
+			&:empty {
+				display: none;
+			}
+		}
+		&.success {
+			background: $colorSuccess;
 		}
 		&.message {
 			background: $colorMessage;
@@ -140,7 +148,7 @@ table {
 	}
 	tbody {
 		tr:nth-child(even) {
-			background: #F6F6F6;
+			background: #FCFCFC;
 		}
 	}
 	th,
