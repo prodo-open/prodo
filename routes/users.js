@@ -29,7 +29,7 @@ router.get('/', auth.authenticated, nav, function(req, res, next) {
 	});
 });
 
-router.get('/:id/edit', auth.authenticated, nav, function(req, res, next) {
+router.get('/:id/edit', auth.authenticated, function(req, res, next) {
 	User.findById(req.params.id, function(err, user) {
 		if (err) {
 			return next(err);
@@ -108,7 +108,7 @@ router.delete('/:id/remove', auth.authenticated, function(req, res, next) {
 	}
 });
 
-router.get('/new', auth.authenticated, nav, function(req, res, next) {
+router.get('/new', auth.authenticated, function(req, res, next) {
 	res.render('users/new');
 });
 
