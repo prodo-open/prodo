@@ -69,10 +69,16 @@ if (app.get('env') === 'development') {
 	app.use(auth.authenticated, function(err, req, res, next) {
 		res.status(err.status || 500);
 
-		res.render('error', {
-			message: err.message,
-			error: err
-		});
+		if (req.xhr) {
+			res.send({
+				error: err.message
+			});
+		} else {
+			res.render('error', {
+				message: err.message,
+				error: err
+			});
+		}
 	});
 }
 
@@ -81,10 +87,16 @@ if (app.get('env') === 'development') {
 app.use(auth.authenticated, function(err, req, res, next) {
 	res.status(err.status || 500);
 
-	res.render('error', {
-		message: err.message,
-		error: {}
-	});
+	if (req.xhr) {
+		res.send({
+			error: err.message
+		});
+	} else {
+		res.render('error', {
+			message: err.message,
+			error: {}
+		});
+	}
 });
 
 module.exports = app;
