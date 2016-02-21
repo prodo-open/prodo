@@ -1,0 +1,10 @@
+h1 Edit device
+form(action="/devices/#{device._id}/edit", method="PUT", class="ajax-form")
+	p.success
+	p.error
+	label
+		strong Name
+		input(type="text", name="name", placeholder="Name", value="#{device.name}")
+	p
+		button(type="submit") Save
+		button(type="button", class="close") Close

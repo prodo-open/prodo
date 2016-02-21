@@ -168,7 +168,8 @@ table {
 				top: 0;
 				width: 100%;
 				&.edit,
-				&.remove {
+				&.remove,
+				&.refresh {
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: 2em;
@@ -178,6 +179,9 @@ table {
 				}
 				&.remove {
 					background-image: url('/images/icons/remove.svg');
+				}
+				&.refresh {
+					background-image: url('/images/icons/refresh.svg');
 				}
 			}
 		}

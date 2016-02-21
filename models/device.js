@@ -1,12 +1,18 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		unique: true
+	},
 	token: {
 		type: String,
 		unique: true
 	},
-	created: Date,
+	created: {
+		type: Date,
+		default: Date.now
+	},
 	updated: {
 		type: Date,
 		default: Date.now

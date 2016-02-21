@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+	h1 Devices
+	p
+		a.button.new(href="/devices/new") Add device
+	table
+		thead
+			tr
+				th Name
+				th(colspan="4") Token
+		tbody
+			each device in devices
+				tr
+					td=device.name
+					td.token=device.token
+					td.icon
+						a.refresh(href="/devices/#{device._id}/refresh", title="Refresh token")
+					td.icon
+						a.edit(href="/devices/#{device._id}/edit", title="Edit device")
+					td.icon
+						a.remove(href="/devices/#{device._id}/remove", title="Remove device")

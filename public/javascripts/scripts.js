@@ -170,4 +170,26 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$('.refresh').on('click', function(e) {
+		e.preventDefault();
+
+		var ask = confirm('Are you sure?');
+
+		if (ask) {
+			var token = $(this).parent().siblings('.token');
+
+			AJAX.get(this.href).then(function(data) {
+				if (token) {
+					token.text(data.token);
+				}
+
+				MODAL.show('<p>' + data.message, [MODAL.SLIM, MODAL.SUCCESS]);
+			}, function(xhr) {
+				if (xhr.responseJSON) {
+					MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
+				}
+			});
+		}
+	});
 });

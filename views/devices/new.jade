@@ -1,0 +1,9 @@
+h1 Add device
+form(action="/devices/new", method="POST", class="ajax-form")
+	p.success
+	p.error
+	label
+		input(type="text", name="name", placeholder="Name")
+	p
+		button(type="submit") Add
+		button(type="button", class="close") Close
