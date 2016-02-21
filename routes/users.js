@@ -71,10 +71,14 @@ router.put('/:id/edit', auth.authenticated, function(req, res, next) {
 						return next(err);
 					}
 
-					res.send({});
+					res.send({
+						message: 'User updated'
+					});
 				});
 			} else {
-				res.send({});
+				res.send({
+					message: 'User updated'
+				});
 			}
 		});
 	} else {
@@ -97,7 +101,9 @@ router.delete('/:id/remove', auth.authenticated, function(req, res, next) {
 				return next(err);
 			}
 
-			res.send({});
+			res.send({
+				message: 'User removed'
+			});
 		});
 	}
 });
@@ -128,7 +134,9 @@ router.post('/new', function(req, res, next) {
 				}
 			}
 
-			res.send({});
+			res.send({
+				message: 'User added'
+			});
 		});
 	} else {
 		res.status(400).send({

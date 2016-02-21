@@ -91,7 +91,7 @@ const AJAX = new function() {
 };
 
 $(document).ready(function() {
-	$('.user-new').on('click', function(e) {
+	$('.new').on('click', function(e) {
 		e.preventDefault();
 
 		AJAX.get(this.href).done(function(data) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 				var timeout;
 
 				AJAX.form(form, function(data) {
-					content.find('p.success').text('User added');
+					content.find('p.success').text(data.message);
 
 					clearTimeout(timeout);
 
@@ -115,17 +115,13 @@ $(document).ready(function() {
 						content.find('p.error').text(xhr.responseJSON.error);
 
 						clearTimeout(timeout);
-
-						timeout = setTimeout(function() {
-							content.find('p.error').text('');
-						}, 3000);
 					}
 				});
 			});
 		});
 	});
 
-	$('.user-edit').on('click', function(e) {
+	$('.edit').on('click', function(e) {
 		e.preventDefault();
 
 		AJAX.get(this.href).done(function(data) {
@@ -135,7 +131,7 @@ $(document).ready(function() {
 				var timeout;
 
 				AJAX.form(form, function(data) {
-					content.find('p.success').text('User updated');
+					content.find('p.success').text(data.message);
 
 					clearTimeout(timeout);
 
@@ -149,17 +145,13 @@ $(document).ready(function() {
 						content.find('p.error').text(xhr.responseJSON.error);
 
 						clearTimeout(timeout);
-
-						timeout = setTimeout(function() {
-							content.find('p.error').text('');
-						}, 3000);
 					}
 				});
 			});
 		});
 	});
 
-	$('.user-remove').on('click', function(e) {
+	$('.remove').on('click', function(e) {
 		e.preventDefault();
 
 		var ask = confirm('Are you sure?');

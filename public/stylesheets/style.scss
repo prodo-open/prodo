@@ -167,17 +167,17 @@ table {
 				position: absolute;
 				top: 0;
 				width: 100%;
-				&.user-edit,
-				&.user-remove {
+				&.edit,
+				&.remove {
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: 2em;
 				}
-				&.user-edit {
-					background-image: url('/images/icons/user-edit.png');
+				&.edit {
+					background-image: url('/images/icons/edit.svg');
 				}
-				&.user-remove {
-					background-image: url('/images/icons/user-remove.png');
+				&.remove {
+					background-image: url('/images/icons/remove.svg');
 				}
 			}
 		}

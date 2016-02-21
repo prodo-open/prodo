@@ -3,7 +3,7 @@ extends ../layout
 block content
 	h1 Users
 	p
-		a.button.user-new(href="/users/new") Add user
+		a.button.new(href="/users/new") Add user
 	table
 		thead
 			tr
@@ -16,6 +16,6 @@ block content
 					td
 						a(href="mailto:#{user.email}")=user.email
 					td.icon
-						a.user-edit(href="/users/#{user._id}/edit", title="Edit user")
+						a.edit(href="/users/#{user._id}/edit", title="Edit user")
 					td.icon
-						a.user-remove(href="/users/#{user._id}/remove", title="Remove user")
+						a.remove(href="/users/#{user._id}/remove", title="Remove user")
