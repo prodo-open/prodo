@@ -1,0 +1,13 @@
+h1 Add user
+form(action="/users/new", method="POST", class="ajax-form")
+	p.success
+	p.error
+	label
+		input(type="text", name="name", placeholder="Name", value="#{name || ''}")
+	label
+		input(type="email", name="email", placeholder="Email", value="#{email || ''}")
+	label
+		input(type="password", name="password", placeholder="Password")
+	p
+		button(type="submit") Add
+		button(type="button", class="close") Close

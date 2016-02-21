@@ -1,0 +1,13 @@
+h1 Edit user
+form(action="/users/#{user._id}/edit", method="PUT", class="ajax-form")
+	p.success
+	p.error
+	label
+		strong Name
+		input(type="text", name="name", placeholder="Name", value="#{user.name}")
+	label
+		strong Email
+		input(type="email", name="email", placeholder="Email", value="#{user.email}")
+	p
+		button(type="submit") Save
+		button(type="button", class="close") Close

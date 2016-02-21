@@ -89,3 +89,93 @@ const AJAX = new function() {
 		});
 	};
 };
+
+$(document).ready(function() {
+	$('.user-new').on('click', function(e) {
+		e.preventDefault();
+
+		AJAX.get(this.href).done(function(data) {
+			MODAL.show(data, MODAL.SLIM, function(content) {
+				var form = content.find('.ajax-form');
+
+				var timeout;
+
+				AJAX.form(form, function(data) {
+					content.find('p.success').text('User added');
+
+					clearTimeout(timeout);
+
+					timeout = setTimeout(function() {
+						content.find('p.success').text('');
+
+						window.location.reload();
+					}, 3000);
+				}, function(xhr) {
+					if (xhr.responseJSON) {
+						content.find('p.error').text(xhr.responseJSON.error);
+
+						clearTimeout(timeout);
+
+						timeout = setTimeout(function() {
+							content.find('p.error').text('');
+						}, 3000);
+					}
+				});
+			});
+		});
+	});
+
+	$('.user-edit').on('click', function(e) {
+		e.preventDefault();
+
+		AJAX.get(this.href).done(function(data) {
+			MODAL.show(data, MODAL.SLIM, function(content) {
+				var form = content.find('.ajax-form');
+
+				var timeout;
+
+				AJAX.form(form, function(data) {
+					content.find('p.success').text('User updated');
+
+					clearTimeout(timeout);
+
+					timeout = setTimeout(function() {
+						content.find('p.success').text('');
+
+						window.location.reload();
+					}, 3000);
+				}, function(xhr) {
+					if (xhr.responseJSON) {
+						content.find('p.error').text(xhr.responseJSON.error);
+
+						clearTimeout(timeout);
+
+						timeout = setTimeout(function() {
+							content.find('p.error').text('');
+						}, 3000);
+					}
+				});
+			});
+		});
+	});
+
+	$('.user-remove').on('click', function(e) {
+		e.preventDefault();
+
+		var ask = confirm('Are you sure?');
+
+		if (ask) {
+			var row = $(this).closest('tr');
+
+			AJAX.delete(this.href).then(function() {
+				row.fadeOut(function() {
+					row.remove();
+				});
+			}, function(xhr) {
+				if (xhr.responseJSON) {
+					MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
+				}
+			});
+		}
+	});
+});
