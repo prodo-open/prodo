@@ -1,4 +1,6 @@
-var MODAL = new function() {
+// 'use strict';
+
+const MODAL = new function() {
 	var _this = this;
 
 	_this.SLIM = 'slim';
@@ -53,7 +55,7 @@ var MODAL = new function() {
 	};
 };
 
-var AJAX = new function() {
+const AJAX = new function() {
 	var ajax = function(url, method, data) {
 		return $.ajax(url, {
 			method: method,
