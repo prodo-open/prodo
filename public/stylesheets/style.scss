@@ -23,8 +23,6 @@ body {
 	background: #FFF;
 	color: #111;
 	cursor: default;
-	display: flex;
-	flex-direction: column;
 	font: normal 1em/1 'Avenir Next', sans-serif;
 	height: 100vh;
 }
@@ -199,6 +197,9 @@ nav {
 	background: $colorPrimary;
 	color: #FFF;
 	display: flex;
+	position: fixed;
+	top: 0;
+	width: 100%;
 	h1,
 	a,
 	span {
@@ -219,9 +220,7 @@ nav {
 	}
 }
 section {
-	flex: 1;
-	padding: 1em 3em;
-	overflow-y: scroll;
+	padding: 4em 3em 1em 3em;
 }
 /* Components */
 .modal-wrapper {
