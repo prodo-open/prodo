@@ -5,8 +5,8 @@ block content
 
 	h1 Messages
 	form(action="/messages", method="GET", class="filters")
-		input(type="text", name="from", placeholder="From", value="#{data.from || ''}")
-		input(type="text", name="to", placeholder="To", value="#{data.to || ''}")
+		input(type="text", name="from", readonly, placeholder="From", value="#{data.from || ''}")
+		input(type="text", name="to", readonly, placeholder="To", value="#{data.to || ''}")
 		select(name="status")
 			each status in statuses
 				if data.status === status.value

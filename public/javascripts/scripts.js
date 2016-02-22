@@ -193,12 +193,18 @@ $(document).ready(function() {
 		}
 	});
 
-	$('input[name=from], input[name=to]').each(function(index, input) {
-		$(input).pickadate({
-			format: 'yyyy-mm-dd',
-			today: null,
-			clear: null,
-			close: null
+	var dateFrom = $('input[name=from]'),
+		dateTo = $('input[name=to]');
+
+	if (dateFrom.length > 0 && dateTo.length > 0) {
+		rome(dateFrom.get(0), {
+			dateValidator: rome.val.beforeEq(dateTo.get(0)),
+			time: false
 		});
-	});
+
+		rome(dateTo.get(0), {
+			dateValidator: rome.val.afterEq(dateFrom.get(0)),
+			time: false
+		});
+	}
 });
