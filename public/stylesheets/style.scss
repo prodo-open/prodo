@@ -53,6 +53,7 @@ form {
 		display: block;
 		line-height: 1;
 		margin: 2em 0;
+		position: relative;
 		&.success,
 		&.error,
 		&.message {
@@ -85,7 +86,8 @@ form {
 			}
 		}
 	}
-	input {
+	input,
+	select {
 		appearance: none;
 		background: #EEE;
 		border: none;
@@ -93,6 +95,7 @@ form {
 		line-height: normal;
 		min-width: 20em;
 		padding: 1em;
+		-webkit-appearance: none;
 	}
 	button {
 		@extend input;
@@ -105,6 +108,11 @@ form {
 		&:active {
 			background: $colorPrimaryDark;
 		}
+	}
+	select {
+		background: #EEE url('/images/icons/arrow-down.svg') calc(100% - 0.5em) center no-repeat;
+		background-size: auto 80%;
+		padding-right: 3.5em;
 	}
 }
 h1,
@@ -138,20 +146,23 @@ pre {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	border-bottom: 1px solid #EEE;
+	border-top: 1px solid #EEE;
 	text-align: left;
 	width: 100%;
 	vertical-align: middle;
 	thead {
-		background: #F9F9F9;
+		background: #EEE;
 	}
 	tbody {
 		tr:nth-child(even) {
-			background: #FCFCFC;
+			background: #F9F9F9;
 		}
 	}
 	th,
 	td {
-		border: 1px solid #EEE;
+		border-left: 1px solid #EEE;
+		border-right: 1px solid #EEE;
 		padding: 1em;
 		&.icon {
 			padding: 0;
