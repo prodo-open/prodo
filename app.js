@@ -47,11 +47,13 @@ var auth = require('./prodo/auth');
 // routes
 var routes = require('./routes/index'),
 	dashboard = require('./routes/dashboard'),
+	messages = require('./routes/messages'),
 	devices = require('./routes/devices'),
 	users = require('./routes/users');
 
 app.use('/', routes);
 app.use('/dashboard', auth.authenticated, dashboard);
+app.use('/messages', auth.authenticated, messages);
 app.use('/devices', auth.authenticated, devices);
 app.use('/users', users);
 

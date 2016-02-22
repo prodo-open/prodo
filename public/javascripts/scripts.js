@@ -192,4 +192,13 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$('input[name=from], input[name=to]').each(function(index, input) {
+		$(input).pickadate({
+			format: 'yyyy-mm-dd',
+			today: null,
+			clear: null,
+			close: null
+		});
+	});
 });

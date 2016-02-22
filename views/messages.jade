@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	- var statuses = [{label: 'Status', value: ''}, {label: 'Queued', value: 'queued'}, {label: 'Sent', value: 'sent'}, {label: 'Failed', value: 'failed'}]
+
+	h1 Messages
+	form(action="/messages", method="GET", class="filters")
+		input(type="text", name="from", placeholder="From", value="#{data.from || ''}")
+		input(type="text", name="to", placeholder="To", value="#{data.to || ''}")
+		select(name="status")
+			each status in statuses
+				if data.status === status.value
+					option(value="#{status.value}", "selected")=status.label
+				else
+					option(value="#{status.value}")=status.label
+		button(type="submit") Filter
+	ul.pagination
+		li Pages
+		each page in pages
+			li
+				if page.active
+					a(href="#{page.link}", class="active")=page.label
+				else
+					a(href="#{page.link}")=page.label
+	table
+		thead
+			tr
+				th Device
+				th From
+				th To
+				th Created
+				th Sent
+				th Status
+				th Tags
+		tbody
+			each message in messages
+				tr
+					td=message.device.name
+					td=message.from
+					td=message.to
+					td(title="#{message.created}")=message.date.created
+					td(title="#{message.sent}")=message.date.sent
+					td.capitalise=message.status
+					td
+						each tag in message.tags
+							span.tag=tag
