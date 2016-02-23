@@ -6,10 +6,11 @@ var schema = new mongoose.Schema({
 		index: true,
 		unique: true
 	},
-	value: String
-}, {
-	_id: false,
-	versionKey: false
+	value: String,
+	readOnly: {
+		type: Boolean,
+		default: false
+	}
 });
 
 module.exports = mongoose.model('Setting', schema);

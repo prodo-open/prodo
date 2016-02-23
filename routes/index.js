@@ -49,26 +49,24 @@ router.post('/install', function(req, res, next) {
 				return next(err);
 			}
 
-			if (user) {
-				Setting.insertMany([{
-					key: 'installed',
-					value: true
-				}, {
-					key: 'installed_on',
-					value: Date.now()
-				}], function(err) {
-					if (err) {
-						console.error(err);
-					}
-				});
+			Setting.insertMany([{
+				key: 'installed',
+				value: true,
+				readOnly: true
+			}, {
+				key: 'installed_on',
+				value: Date.now(),
+				readOnly: true
+			}], function(err) {
+				if (err) {
+					console.error(err);
+				}
+			});
 
-				res.render('login', {
-					email: user.email,
-					message: 'User created. You may now login'
-				});
-			} else {
-				return next(new Error());
-			}
+			res.render('login', {
+				email: user.email,
+				message: 'User created. You may now login'
+			});
 		});
 	} else {
 		res.render('install', {
