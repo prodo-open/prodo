@@ -176,6 +176,16 @@ table {
 		border-left: 1px solid $backgroundGreyTwo;
 		border-right: 1px solid $backgroundGreyTwo;
 		padding: 1em;
+		p {
+			line-height: 1;
+			margin: 1em 0;
+			&:first-child {
+				margin-top: 0;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
 		&.icon {
 			padding: 0;
 			position: relative;
