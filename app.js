@@ -49,13 +49,15 @@ var routes = require('./routes/index'),
 	dashboard = require('./routes/dashboard'),
 	messages = require('./routes/messages'),
 	devices = require('./routes/devices'),
-	users = require('./routes/users');
+	users = require('./routes/users'),
+	api = require('./routes/api');
 
 app.use('/', routes);
 app.use('/dashboard', auth.authenticated, dashboard);
 app.use('/messages', auth.authenticated, messages);
 app.use('/devices', auth.authenticated, devices);
 app.use('/users', auth.authenticated, users);
+app.use('/api', auth.deviceAuthenticated, api);
 
 // catch 404 and forward to error handler
 app.use(auth.authenticated, function(req, res, next) {
