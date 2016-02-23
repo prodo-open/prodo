@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-	- var events = [{label: 'Event', value: ''}, {label: 'Incoming', value: 'incoming'}, {label: 'Outgoing', value: 'outgoing'}]
+	- var events = [{label: 'Event', value: ''}, {label: 'Incoming message', value: 'incoming'}]
 
 	h1 Edit webhook
 	form(action="/webhooks/#{webhook._id}/edit", method="PUT", class="webhook-edit")
