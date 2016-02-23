@@ -64,10 +64,6 @@ router.get('/', nav, function(req, res, next) {
 				return next(err);
 			}
 
-			if (!messages) {
-				return next();
-			}
-
 			res.render('messages', {
 				messages: messages,
 				data: req.query,

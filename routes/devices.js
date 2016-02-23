@@ -17,10 +17,6 @@ router.get('/', nav, function(req, res, next) {
 			return next(err);
 		}
 
-		if (!devices) {
-			return next();
-		}
-
 		res.render('devices/index', {
 			devices: devices
 		});
@@ -31,10 +27,6 @@ router.get('/:id/edit', function(req, res, next) {
 	Device.findById(req.params.id, function(err, device) {
 		if (err) {
 			return next(err);
-		}
-
-		if (!device) {
-			return next();
 		}
 
 		res.render('devices/view', {
@@ -48,10 +40,6 @@ router.put('/:id/edit', function(req, res, next) {
 		Device.findById(req.params.id, function(err, device) {
 			if (err) {
 				return next(err);
-			}
-
-			if (!device) {
-				return next();
 			}
 
 			if (req.body.name) {
@@ -94,10 +82,6 @@ router.get('/:id/refresh', function(req, res, next) {
 	Device.findById(req.params.id, function(err, device) {
 		if (err) {
 			return next(err);
-		}
-
-		if (!device) {
-			return next();
 		}
 
 		device.token = crypto.createHash('sha256').update(device.name + Date.now()).digest('hex');

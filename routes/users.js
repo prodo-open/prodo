@@ -17,10 +17,6 @@ router.get('/', nav, function(req, res, next) {
 			return next(err);
 		}
 
-		if (!users) {
-			return next();
-		}
-
 		res.render('users/index', {
 			users: users
 		});
@@ -31,10 +27,6 @@ router.get('/:id/edit', function(req, res, next) {
 	User.findById(req.params.id, function(err, user) {
 		if (err) {
 			return next(err);
-		}
-
-		if (!user) {
-			return next();
 		}
 
 		res.render('users/view', {
@@ -49,10 +41,6 @@ router.put('/:id/edit', function(req, res, next) {
 		User.findById(req.params.id, function(err, user) {
 			if (err) {
 				return next(err);
-			}
-
-			if (!user) {
-				return next();
 			}
 
 			if (req.body.name) {
