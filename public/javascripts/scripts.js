@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 const MODAL = new function() {
 	var _this = this;
