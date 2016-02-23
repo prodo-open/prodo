@@ -39,7 +39,6 @@ a {
 		cursor: pointer;
 		display: inline-block;
 		line-height: 1.5;
-		min-width: 0;
 		padding: 0.5em 1em;
 		transition: all 200ms ease;
 		&:active {
@@ -87,24 +86,30 @@ form {
 		}
 	}
 	input,
-	select {
+	select,
+	textarea {
 		appearance: none;
 		background: #EEE;
 		border: none;
 		font: inherit;
 		line-height: normal;
-		min-width: 20em;
 		padding: 1em;
+		width: 30em;
 		-webkit-appearance: none;
+		&[type=image] {
+			background: none;
+			padding: 0;
+			width: auto;
+		}
 	}
 	button {
 		@extend input;
 		background: $colorPrimary;
 		color: #FFF;
 		cursor: pointer;
-		min-width: 0;
 		padding: 1em 2em;
 		transition: all 200ms ease;
+		width: auto;
 		&:active {
 			background: $colorPrimaryDark;
 		}
@@ -113,6 +118,9 @@ form {
 		background: #EEE url('/images/icons/arrow-down.svg') calc(100% - 0.5em) center no-repeat;
 		background-size: auto 80%;
 		padding-right: 3.5em;
+	}
+	textarea {
+		line-height: 1.5;
 	}
 }
 h1,
@@ -136,7 +144,7 @@ img {
 	vertical-align: top;
 }
 p {
-	line-height: 1.6;
+	line-height: 1.5;
 	margin: 2em 0;
 }
 pre {
@@ -232,7 +240,7 @@ nav {
 	}
 }
 section {
-	padding: 4em 3em 1em 3em;
+	padding: 4em 3em 1em;
 }
 /* Components */
 .modal-wrapper {
@@ -285,7 +293,7 @@ section {
 	position: relative;
 	text-align: center;
 	> * {
-		flex: 1 0 auto;
+		flex: 1 1 auto;
 		margin: 0 1em 2em;
 		&:first-child {
 			margin-left: 0;
