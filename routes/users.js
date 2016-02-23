@@ -3,8 +3,6 @@ var express = require('express'),
 
 var crypto = require('crypto');
 
-var auth = require('../prodo/auth');
-
 var User = require('../models/user');
 
 var nav = function(req, res, next) {
@@ -13,7 +11,7 @@ var nav = function(req, res, next) {
 	next();
 };
 
-router.get('/', auth.authenticated, nav, function(req, res, next) {
+router.get('/', nav, function(req, res, next) {
 	User.find(function(err, users) {
 		if (err) {
 			return next(err);
@@ -29,7 +27,7 @@ router.get('/', auth.authenticated, nav, function(req, res, next) {
 	});
 });
 
-router.get('/:id/edit', auth.authenticated, function(req, res, next) {
+router.get('/:id/edit', function(req, res, next) {
 	User.findById(req.params.id, function(err, user) {
 		if (err) {
 			return next(err);
@@ -46,7 +44,7 @@ router.get('/:id/edit', auth.authenticated, function(req, res, next) {
 	});
 });
 
-router.put('/:id/edit', auth.authenticated, function(req, res, next) {
+router.put('/:id/edit', function(req, res, next) {
 	if (req.body.name || req.body.email) {
 		User.findById(req.params.id, function(err, user) {
 			if (err) {
@@ -88,7 +86,7 @@ router.put('/:id/edit', auth.authenticated, function(req, res, next) {
 	}
 });
 
-router.delete('/:id/remove', auth.authenticated, function(req, res, next) {
+router.delete('/:id/remove', function(req, res, next) {
 	if (res.locals.authUser._id.equals(req.params.id)) {
 		res.status(403).send({
 			error: 'You cannot remove yourself'
@@ -108,7 +106,7 @@ router.delete('/:id/remove', auth.authenticated, function(req, res, next) {
 	}
 });
 
-router.get('/new', auth.authenticated, function(req, res, next) {
+router.get('/new', function(req, res, next) {
 	res.render('users/new');
 });
 
@@ -143,46 +141,6 @@ router.post('/new', function(req, res, next) {
 			error: 'Fields are missing'
 		});
 	}
-});
-
-router.get('/login', function(req, res, next) {
-	if (auth.isLoggedIn(req)) {
-		res.redirect('/');
-	} else {
-		res.render('login');
-	}
-});
-
-router.post('/login', function(req, res, next) {
-	if (req.body.email && req.body.password) {
-		auth.login(req.body.email, req.body.password, function(err, user) {
-			if (err) {
-				return next(err);
-			}
-
-			if (user) {
-				res.cookie('token', user.token);
-
-				res.redirect('/');
-			} else {
-				res.render('login', {
-					email: req.body.email,
-					error: 'Email / password incorrect'
-				});
-			}
-		});
-	} else {
-		res.render('login', {
-			email: req.body.email,
-			error: 'Email / password missing'
-		});
-	}
-});
-
-router.get('/logout', function(req, res, next) {
-	res.clearCookie('token');
-
-	res.redirect('/users/login');
 });
 
 module.exports = router;

@@ -16,14 +16,14 @@ exports.authenticated = function(req, res, next) {
 			} else {
 				res.clearCookie('token');
 
-				res.redirect('/users/login');
+				res.redirect('/login');
 			}
 		});
 	} else {
 		if (req.xhr) {
 			res.status(401).send({});
 		} else {
-			res.redirect('/users/login');
+			res.redirect('/login');
 		}
 	}
 };

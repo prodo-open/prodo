@@ -55,7 +55,7 @@ app.use('/', routes);
 app.use('/dashboard', auth.authenticated, dashboard);
 app.use('/messages', auth.authenticated, messages);
 app.use('/devices', auth.authenticated, devices);
-app.use('/users', users);
+app.use('/users', auth.authenticated, users);
 
 // catch 404 and forward to error handler
 app.use(auth.authenticated, function(req, res, next) {

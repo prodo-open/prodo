@@ -2,7 +2,7 @@ extends layout
 
 block content
 	h1 Login
-	form(action="/users/login", method="POST")
+	form(action="/login", method="POST")
 		if error
 			p.error=error
 		if message
