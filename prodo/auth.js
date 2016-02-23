@@ -1,4 +1,5 @@
-var User = require('../models/user');
+var User = require('../models/user'),
+	Device = require('../models/device');
 
 exports.authenticated = function(req, res, next) {
 	if (exports.isLoggedIn(req)) {
@@ -28,6 +29,38 @@ exports.authenticated = function(req, res, next) {
 		} else {
 			res.redirect('/login');
 		}
+	}
+};
+
+exports.deviceAuthenticated = function(req, res, next) {
+	if (req.headers.token) {
+		Device.findOne({
+			token: req.headers.token
+		}, function(err, device) {
+			if (err || !device) {
+				var error = new Error('Invalid device token');
+				error.status = 403;
+
+				return next(error);
+			}
+
+			req.device = device;
+
+			device.updated = Date.now();
+
+			device.save(function(err) {
+				if (err) {
+					return next(err);
+				} else {
+					next();
+				}
+			});
+		});
+	} else {
+		var error = new Error('Missing device token');
+		error.status = 401;
+
+		next(error);
 	}
 };
 
