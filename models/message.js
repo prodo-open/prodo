@@ -11,16 +11,32 @@ var schema = new mongoose.Schema({
 	to: String,
 	created: Date,
 	sent: Date,
-	status: String,
+	status: {
+		type: String,
+		validate: {
+			validator: function(value) {
+				return /pending|queued|failed|sent/i.test(value);
+			},
+			message: '{VALUE} is not a valid status'
+		}
+	},
 	tags: [String]
 });
 
 schema.virtual('date.created').get(function() {
-	return moment(this.created).fromNow();
+	if (this.created) {
+		return moment(this.created).fromNow();
+	} else {
+		return '-';
+	}
 });
 
 schema.virtual('date.sent').get(function() {
-	return moment(this.sent).fromNow();
+	if (this.sent) {
+		return moment(this.sent).fromNow();
+	} else {
+		return '-';
+	}
 });
 
 module.exports = mongoose.model('Message', schema);
