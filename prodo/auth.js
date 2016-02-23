@@ -21,7 +21,10 @@ exports.authenticated = function(req, res, next) {
 		});
 	} else {
 		if (req.xhr) {
-			res.status(401).send({});
+			var error = new Error();
+			error.status = 401;
+
+			next(error);
 		} else {
 			res.redirect('/login');
 		}
