@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+var moment = require('moment');
+
 var schema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -7,6 +9,7 @@ var schema = new mongoose.Schema({
 	},
 	token: {
 		type: String,
+		index: true,
 		unique: true
 	},
 	created: {
@@ -19,8 +22,10 @@ var schema = new mongoose.Schema({
 	}
 });
 
-schema.methods.isOnline = function() {
-	return this.updated && Date.now() - this.updated > (60 * 5 * 1000);
-};
+schema.virtual('online').get(function() {
+	var fiveMinutesAgo = moment().subtract(5, 'minutes')
+
+	return moment(this.updated).isAfter(fiveMinutesAgo);
+});
 
 module.exports = mongoose.model('Device', schema);
