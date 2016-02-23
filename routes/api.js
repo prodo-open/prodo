@@ -2,7 +2,8 @@ var express = require('express'),
 	router = express.Router();
 
 var Setting = require('../models/setting'),
-	Message = require('../models/message');
+	Message = require('../models/message'),
+	Webhook = require('../models/webhook');
 
 router.get('/settings', function(req, res, next) {
 	Settings.find(function(err, settings) {
@@ -30,6 +31,8 @@ router.post('/messages', function(req, res, next) {
 			if (err) {
 				return next(err);
 			}
+
+			Webhook.push('incoming', message);
 
 			res.send({
 				id: message._id
