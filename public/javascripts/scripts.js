@@ -98,7 +98,7 @@ $(document).ready(function() {
 	}
 
 	$('table').exists(function() {
-		$('.new').on('click', function(e) {
+		$('.new').not('.no-ajax').on('click', function(e) {
 			e.preventDefault();
 
 			AJAX.get(this.href).done(function(data) {
@@ -128,7 +128,7 @@ $(document).ready(function() {
 			});
 		});
 
-		$('.edit').on('click', function(e) {
+		$('.edit').not('.no-ajax').on('click', function(e) {
 			e.preventDefault();
 
 			AJAX.get(this.href).done(function(data) {
@@ -158,7 +158,7 @@ $(document).ready(function() {
 			});
 		});
 
-		$('.remove').on('click', function(e) {
+		$('.remove').not('.no-ajax').on('click', function(e) {
 			e.preventDefault();
 
 			var ask = confirm('Are you sure?');
@@ -178,7 +178,7 @@ $(document).ready(function() {
 			}
 		});
 
-		$('.refresh').on('click', function(e) {
+		$('.refresh').not('.no-ajax').on('click', function(e) {
 			e.preventDefault();
 
 			var ask = confirm('Are you sure?');
