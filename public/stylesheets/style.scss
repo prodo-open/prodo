@@ -1,4 +1,5 @@
 /* Colors */
+$colorText: #111;
 $colorPrimary: #3F51B5;
 $colorPrimaryDark: #303F9F;
 $colorAccent: #448AFF;
@@ -8,6 +9,9 @@ $colorGreyDark: #616161;
 $colorMessage: #2196F3;
 $colorSuccess: #4CAF50;
 $colorError: #F44336;
+$backgroundWhite: #FFF;
+$backgroundGreyOne: #F9F9F9;
+$backgroundGreyTwo: #EEE;
 /* Styles */
 *,
 *:before,
@@ -20,8 +24,8 @@ $colorError: #F44336;
 	padding: 0;
 }
 body {
-	background: #FFF;
-	color: #111;
+	background: $backgroundWhite;
+	color: $colorText;
 	cursor: default;
 	font: normal 1em/1 'Avenir Next', sans-serif;
 	height: 100vh;
@@ -35,7 +39,7 @@ a {
 	}
 	&.button {
 		background: $colorPrimary;
-		color: #FFF;
+		color: $backgroundWhite;
 		cursor: pointer;
 		display: inline-block;
 		line-height: 1.5;
@@ -57,7 +61,7 @@ form {
 		&.error,
 		&.message {
 			background: $colorError;
-			color: #FFF;
+			color: $backgroundWhite;
 			display: inline-block;
 			line-height: 1.5;
 			margin: 0;
@@ -89,7 +93,7 @@ form {
 	select,
 	textarea {
 		appearance: none;
-		background: #EEE;
+		background: $backgroundGreyTwo;
 		border: none;
 		font: inherit;
 		line-height: normal;
@@ -105,7 +109,7 @@ form {
 	button {
 		@extend input;
 		background: $colorPrimary;
-		color: #FFF;
+		color: $backgroundWhite;
 		cursor: pointer;
 		padding: 1em 2em;
 		transition: all 200ms ease;
@@ -115,7 +119,7 @@ form {
 		}
 	}
 	select {
-		background: #EEE url('/images/icons/arrow-down.svg') calc(100% - 0.5em) center no-repeat;
+		background: $backgroundGreyTwo url('/images/icons/arrow-down.svg') calc(100% - 0.5em) center no-repeat;
 		background-size: auto 80%;
 		padding-right: 3.5em;
 	}
@@ -154,23 +158,23 @@ pre {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	border-bottom: 1px solid #EEE;
-	border-top: 1px solid #EEE;
+	border-bottom: 1px solid $backgroundGreyTwo;
+	border-top: 1px solid $backgroundGreyTwo;
 	text-align: left;
 	width: 100%;
 	vertical-align: middle;
 	thead {
-		background: #EEE;
+		background: $backgroundGreyTwo;
 	}
 	tbody {
 		tr:nth-child(even) {
-			background: #F9F9F9;
+			background: $backgroundGreyOne;
 		}
 	}
 	th,
 	td {
-		border-left: 1px solid #EEE;
-		border-right: 1px solid #EEE;
+		border-left: 1px solid $backgroundGreyTwo;
+		border-right: 1px solid $backgroundGreyTwo;
 		padding: 1em;
 		&.icon {
 			padding: 0;
@@ -214,7 +218,7 @@ ul {
 /* Layout */
 nav {
 	background: $colorPrimary;
-	color: #FFF;
+	color: $backgroundWhite;
 	display: flex;
 	position: fixed;
 	top: 0;
@@ -223,7 +227,7 @@ nav {
 	h1,
 	a,
 	span {
-		color: #FFF;
+		color: $backgroundWhite;
 		font-size: 1em;
 		font-weight: 300;
 		margin: 0;
@@ -232,7 +236,7 @@ nav {
 	a:hover,
 	a.active {
 		background-color: $colorPrimaryDark;
-		color: #FFF;
+		color: $backgroundWhite;
 	}
 	.right {
 		display: flex;
@@ -257,7 +261,7 @@ section {
 		width: 100%;
 		z-index: 9;
 		.content {
-			background: #FFF;
+			background: $backgroundWhite;
 			max-height: 80%;
 			max-width: 80%;
 			min-height: 20em;
@@ -288,7 +292,8 @@ section {
 		}
 	}
 }
-.filters {
+.filters,
+.headers {
 	display: flex;
 	position: relative;
 	text-align: center;
@@ -317,12 +322,12 @@ section {
 			margin-right: 1em;
 		}
 		a {
-			background: #F9F9F9;
+			background: $backgroundGreyOne;
 			display: block;
 			padding: 1em;
 			&:hover,
 			&.active {
-				background: #EEE;
+				background: $backgroundGreyTwo;
 			}
 		}
 	}
