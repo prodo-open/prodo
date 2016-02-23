@@ -342,3 +342,14 @@ section {
 		}
 	}
 }
+.webhook-new,
+.webhook-edit {
+	.headers {
+		input {
+			margin-bottom: 0;
+			&[type=image] {
+				flex: 0 1 auto;
+			}
+		}
+	}
+}

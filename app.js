@@ -50,6 +50,7 @@ var routes = require('./routes/index'),
 	messages = require('./routes/messages'),
 	devices = require('./routes/devices'),
 	users = require('./routes/users'),
+	webhooks = require('./routes/webhooks'),
 	api = require('./routes/api');
 
 app.use('/', routes);
@@ -57,6 +58,7 @@ app.use('/dashboard', auth.authenticated, dashboard);
 app.use('/messages', auth.authenticated, messages);
 app.use('/devices', auth.authenticated, devices);
 app.use('/users', auth.authenticated, users);
+app.use('/webhooks', auth.authenticated, webhooks);
 app.use('/api', auth.deviceAuthenticated, api);
 
 // catch 404 and forward to error handler

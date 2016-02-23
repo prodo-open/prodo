@@ -217,4 +217,56 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$('.webhook-new, .webhook-edit').exists(function() {
+		var form = $(this);
+
+		$('.add', form).on('click', function(e) {
+			e.preventDefault();
+
+			var header = $(this).parent(),
+				newHeader = header.clone(true),
+				last = form.children().last();
+
+			$('input', newHeader).val('');
+
+			newHeader.insertBefore(last);
+		});
+
+		$('.remove', form).on('click', function(e) {
+			e.preventDefault();
+
+			if ($('.headers', form).length === 1) {
+				$('h2', form).stop(true, true).fadeOut('fast');
+			}
+
+			$(this).parent().stop(true, true).fadeOut('fast', function() {
+				$(this).remove();
+			});
+		});
+
+		form.on('submit', function(e) {
+			e.preventDefault();
+
+			form.find('.headers').each(function(index, header) {
+				var fields = $(header).children();
+
+				var name = fields.get(0),
+					value = fields.get(1);
+
+				name.name = name.name.replace(/[0-9]+/, index);
+				value.name = value.name.replace(/[0-9]+/, index);
+			});
+
+			var method = form.hasClass('webhook-edit') ? AJAX.put : AJAX.post;
+
+			method(form.prop('action'), form.serialize()).then(function() {
+				window.location = '/webhooks';
+			}, function(xhr) {
+				if (xhr.responseJSON) {
+					form.find('p.error').text(xhr.responseJSON.error);
+				}
+			});
+		});
+	});
 });

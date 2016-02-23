@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+	h1 Add webhook
+	form(action="/webhooks/new", method="POST", class="webhook-new")
+		p.error
+		label
+			input(type="text", name="description", placeholder="Description", required)
+		label
+			select(name="event", required)
+				option(value="") Event
+				option(value="incoming") Incoming
+				option(value="outgoing") Outgoing
+		label
+			input(type="url", name="uri", placeholder="URI", required)
+		h2 Headers
+		.headers
+			input(type="text", name="headers[0][name]", placeholder="Name", required)
+			input(type="text", name="headers[0][value]", placeholder="Value", required)
+			input(type="image", src="/images/icons/add.svg", class="add")
+			input(type="image", src="/images/icons/remove.svg", class="remove")
+		p
+			button(type="submit") Add

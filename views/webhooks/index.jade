@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	h1 Webhooks
+	p
+		a.button.new.no-ajax(href="/webhooks/new") Add webhook
+	table
+		thead
+			tr
+				th Description
+				th Event
+				th URI
+				th(colspan="3") Headers
+		tbody
+			each webhook in webhooks
+				tr
+					td=webhook.description
+					td.monospace=webhook.event
+					td=webhook.uri
+					td
+						each header in webhook.headers
+							p #{header.name}: #{header.value}
+						else
+							| -
+					td.icon
+						a.edit.no-ajax(href="/webhooks/#{webhook._id}/edit", title="Edit webhook")
+					td.icon
+						a.remove(href="/webhooks/#{webhook._id}/remove", title="Remove webhook")

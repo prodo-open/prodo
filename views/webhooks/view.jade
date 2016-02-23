@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+	- var events = [{label: 'Event', value: ''}, {label: 'Incoming', value: 'incoming'}, {label: 'Outgoing', value: 'outgoing'}]
+
+	h1 Edit webhook
+	form(action="/webhooks/#{webhook._id}/edit", method="PUT", class="webhook-edit")
+		p.error
+		label
+			input(type="text", name="description", placeholder="Description", value="#{webhook.description}", required)
+		label
+			select(name="event", required)
+				each event in events
+					if webhook.event === event.value
+						option(value="#{event.value}", "selected")=event.label
+					else
+						option(value="#{event.value}")=event.label
+		label
+			input(type="url", name="uri", placeholder="URI", value="#{webhook.uri}", required)
+		h2 Headers
+		if webhook.headers.length
+			each header in webhook.headers
+				.headers
+					input(type="text", name="headers[0][name]", placeholder="Name", value="#{header.name}", required)
+					input(type="text", name="headers[0][value]", placeholder="Value", value="#{header.value}", required)
+					input(type="image", src="/images/icons/add.svg", class="add")
+					input(type="image", src="/images/icons/remove.svg", class="remove")
+		else
+			.headers
+				input(type="text", name="headers[0][name]", placeholder="Name", required)
+				input(type="text", name="headers[0][value]", placeholder="Value", required)
+				input(type="image", src="/images/icons/add.svg", class="add")
+				input(type="image", src="/images/icons/remove.svg", class="remove")
+		p
+			button(type="submit") Save
