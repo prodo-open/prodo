@@ -61,6 +61,10 @@ router.put('/messages/:id', function(req, res, next) {
 				message.sent = req.body.sent;
 			}
 
+			if (req.body.tags) {
+				message.tags = req.body.tags;
+			}
+
 			if (message.isModified()) {
 				message.save(function(err) {
 					if (err) {
