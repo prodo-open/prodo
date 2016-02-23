@@ -91,120 +91,130 @@ const AJAX = new function() {
 };
 
 $(document).ready(function() {
-	$('.new').on('click', function(e) {
-		e.preventDefault();
-
-		AJAX.get(this.href).done(function(data) {
-			MODAL.show(data, MODAL.SLIM, function(content) {
-				var form = content.find('.ajax-form');
-
-				var timeout;
-
-				AJAX.form(form, function(data) {
-					content.find('p.success').text(data.message);
-
-					clearTimeout(timeout);
-
-					timeout = setTimeout(function() {
-						content.find('p.success').text('');
-
-						window.location.reload();
-					}, 3000);
-				}, function(xhr) {
-					if (xhr.responseJSON) {
-						content.find('p.error').text(xhr.responseJSON.error);
-
-						clearTimeout(timeout);
-					}
-				});
-			});
-		});
-	});
-
-	$('.edit').on('click', function(e) {
-		e.preventDefault();
-
-		AJAX.get(this.href).done(function(data) {
-			MODAL.show(data, MODAL.SLIM, function(content) {
-				var form = content.find('.ajax-form');
-
-				var timeout;
-
-				AJAX.form(form, function(data) {
-					content.find('p.success').text(data.message);
-
-					clearTimeout(timeout);
-
-					timeout = setTimeout(function() {
-						content.find('p.success').text('');
-
-						window.location.reload();
-					}, 3000);
-				}, function(xhr) {
-					if (xhr.responseJSON) {
-						content.find('p.error').text(xhr.responseJSON.error);
-
-						clearTimeout(timeout);
-					}
-				});
-			});
-		});
-	});
-
-	$('.remove').on('click', function(e) {
-		e.preventDefault();
-
-		var ask = confirm('Are you sure?');
-
-		if (ask) {
-			var row = $(this).closest('tr');
-
-			AJAX.delete(this.href).then(function() {
-				row.fadeOut(function() {
-					row.remove();
-				});
-			}, function(xhr) {
-				if (xhr.responseJSON) {
-					MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
-				}
-			});
+	jQuery.fn.exists = function(callback) {
+		if (this.length > 0 && typeof callback === 'function') {
+			callback.call(this);
 		}
-	});
-
-	$('.refresh').on('click', function(e) {
-		e.preventDefault();
-
-		var ask = confirm('Are you sure?');
-
-		if (ask) {
-			var token = $(this).parent().siblings('.token');
-
-			AJAX.get(this.href).then(function(data) {
-				if (token) {
-					token.text(data.token);
-				}
-
-				MODAL.show('<p>' + data.message, [MODAL.SLIM, MODAL.SUCCESS]);
-			}, function(xhr) {
-				if (xhr.responseJSON) {
-					MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
-				}
-			});
-		}
-	});
-
-	var dateFrom = $('input[name=from]'),
-		dateTo = $('input[name=to]');
-
-	if (dateFrom.length > 0 && dateTo.length > 0) {
-		rome(dateFrom.get(0), {
-			dateValidator: rome.val.beforeEq(dateTo.get(0)),
-			time: false
-		});
-
-		rome(dateTo.get(0), {
-			dateValidator: rome.val.afterEq(dateFrom.get(0)),
-			time: false
-		});
 	}
+
+	$('table').exists(function() {
+		$('.new').on('click', function(e) {
+			e.preventDefault();
+
+			AJAX.get(this.href).done(function(data) {
+				MODAL.show(data, MODAL.SLIM, function(content) {
+					var form = content.find('.ajax-form');
+
+					var timeout;
+
+					AJAX.form(form, function(data) {
+						content.find('p.success').text(data.message);
+
+						clearTimeout(timeout);
+
+						timeout = setTimeout(function() {
+							content.find('p.success').text('');
+
+							window.location.reload();
+						}, 3000);
+					}, function(xhr) {
+						if (xhr.responseJSON) {
+							content.find('p.error').text(xhr.responseJSON.error);
+
+							clearTimeout(timeout);
+						}
+					});
+				});
+			});
+		});
+
+		$('.edit').on('click', function(e) {
+			e.preventDefault();
+
+			AJAX.get(this.href).done(function(data) {
+				MODAL.show(data, MODAL.SLIM, function(content) {
+					var form = content.find('.ajax-form');
+
+					var timeout;
+
+					AJAX.form(form, function(data) {
+						content.find('p.success').text(data.message);
+
+						clearTimeout(timeout);
+
+						timeout = setTimeout(function() {
+							content.find('p.success').text('');
+
+							window.location.reload();
+						}, 3000);
+					}, function(xhr) {
+						if (xhr.responseJSON) {
+							content.find('p.error').text(xhr.responseJSON.error);
+
+							clearTimeout(timeout);
+						}
+					});
+				});
+			});
+		});
+
+		$('.remove').on('click', function(e) {
+			e.preventDefault();
+
+			var ask = confirm('Are you sure?');
+
+			if (ask) {
+				var row = $(this).closest('tr');
+
+				AJAX.delete(this.href).then(function() {
+					row.fadeOut(function() {
+						row.remove();
+					});
+				}, function(xhr) {
+					if (xhr.responseJSON) {
+						MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
+					}
+				});
+			}
+		});
+
+		$('.refresh').on('click', function(e) {
+			e.preventDefault();
+
+			var ask = confirm('Are you sure?');
+
+			if (ask) {
+				var token = $(this).parent().siblings('.token');
+
+				AJAX.get(this.href).then(function(data) {
+					if (token) {
+						token.text(data.token);
+					}
+
+					MODAL.show('<p>' + data.message, [MODAL.SLIM, MODAL.SUCCESS]);
+				}, function(xhr) {
+					if (xhr.responseJSON) {
+						MODAL.show('<p>' + xhr.responseJSON.error, [MODAL.SLIM, MODAL.ERROR]);
+					}
+				});
+			}
+		});
+	});
+
+	$('.pagination').exists(function() {
+		var dateFrom = $('input[name=from]'),
+			dateTo = $('input[name=to]');
+
+		if (dateFrom.length > 0 && dateTo.length > 0) {
+			rome(dateFrom.get(0), {
+				dateValidator: rome.val.beforeEq(dateTo.get(0)),
+				time: false
+			});
+
+			rome(dateTo.get(0), {
+				dateValidator: rome.val.afterEq(dateFrom.get(0)),
+				time: false
+			});
+		}
+	});
 });
