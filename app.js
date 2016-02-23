@@ -73,7 +73,7 @@ if (app.get('env') === 'development') {
 	app.use(auth.authenticated, function(err, req, res, next) {
 		res.status(err.status || 500);
 
-		if (req.xhr) {
+		if (req.get('content-type') === 'application/json') {
 			res.send({
 				error: err.message
 			});
@@ -91,7 +91,7 @@ if (app.get('env') === 'development') {
 app.use(auth.authenticated, function(err, req, res, next) {
 	res.status(err.status || 500);
 
-	if (req.xhr) {
+	if (req.get('content-type') === 'application/json') {
 		res.send({
 			error: err.message
 		});

@@ -21,8 +21,8 @@ exports.authenticated = function(req, res, next) {
 			}
 		});
 	} else {
-		if (req.xhr) {
-			var error = new Error();
+		if (req.get('content-type') === 'application/json') {
+			var error = new Error('Unauthorized');
 			error.status = 401;
 
 			next(error);
