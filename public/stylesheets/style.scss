@@ -345,6 +345,7 @@ section {
 .webhook-new,
 .webhook-edit {
 	.headers {
+		margin: 2em 0;
 		input {
 			margin-bottom: 0;
 			&[type=image] {
