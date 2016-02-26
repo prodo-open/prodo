@@ -121,27 +121,35 @@ router.get('/new', function(req, res, next) {
 
 router.post('/new', function(req, res, next) {
 	if (req.body.name) {
-		var device = new Device();
+		var devices = Device.count(function(err, count) {
+			if (count > 0) {
+				res.status(400).send({
+					error: 'You can only have one device'
+				});
+			} else {
+				var device = new Device();
 
-		device.name = req.body.name;
+				device.name = req.body.name;
 
-		device.token = crypto.createHash('sha256').update(req.body.name + Date.now()).digest('hex');
+				device.token = crypto.createHash('sha256').update(req.body.name + Date.now()).digest('hex');
 
-		device.save(function(err, device) {
-			if (err) {
-				if (err.toJSON().code === 11000) {
-					var error = new Error('Device name is already in use');
-					error.status = 400;
+				device.save(function(err, device) {
+					if (err) {
+						if (err.toJSON().code === 11000) {
+							var error = new Error('Device name is already in use');
+							error.status = 400;
 
-					return next(error);
-				} else {
-					return next(err);
-				}
+							return next(error);
+						} else {
+							return next(err);
+						}
+					}
+
+					res.send({
+						message: 'Device added'
+					});
+				});
 			}
-
-			res.send({
-				message: 'Device added'
-			});
 		});
 	} else {
 		res.status(400).send({
