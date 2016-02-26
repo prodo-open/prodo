@@ -6,7 +6,7 @@ var Setting = require('../models/setting'),
 	Webhook = require('../models/webhook');
 
 router.get('/settings', function(req, res, next) {
-	Settings.find(function(err, settings) {
+	Setting.find(function(err, settings) {
 		if (err) {
 			return next(err);
 		}
@@ -15,8 +15,20 @@ router.get('/settings', function(req, res, next) {
 	});
 });
 
+router.get('/messages', function(req, res, next) {
+	Message.find({
+		status: 'pending'
+	}).exec(function(err, messages) {
+		if (err) {
+			return next(err);
+		}
+
+		res.send(messages);
+	});
+});
+
 router.post('/messages', function(req, res, next) {
-	if (req.body.from && req.body.to && req.body.created && req.body.sent && req.body.status) {
+	if (req.body.from && req.body.to && req.body.created && req.body.sent && req.body.status && req.body.tags) {
 		var message = new Message();
 
 		message.device = req.device._id;
@@ -25,14 +37,16 @@ router.post('/messages', function(req, res, next) {
 		message.created = req.body.created;
 		message.sent = req.body.sent;
 		message.status = req.body.status;
-		message.tags = ['incoming'];
+		message.tags = req.body.tags;
 
 		message.save(function(err, message) {
 			if (err) {
 				return next(err);
 			}
 
-			Webhook.push('incoming', message);
+			if (message.tags.indexOf('incoming') >= 0) {
+				Webhook.push('incoming', message);
+			}
 
 			res.send({
 				id: message._id
@@ -47,7 +61,7 @@ router.post('/messages', function(req, res, next) {
 });
 
 router.put('/messages/:id', function(req, res, next) {
-	if (req.body.status || req.body.sent) {
+	if (req.body.status || req.body.sent || req.body.tags) {
 		Message.findById(req.params.id, function(err, message) {
 			if (err) {
 				return next(err);
@@ -71,10 +85,14 @@ router.put('/messages/:id', function(req, res, next) {
 						return next(err);
 					}
 
-					res.send({});
+					res.send({
+						message: 'Message updated'
+					});
 				});
 			} else {
-				res.send({});
+				res.send({
+					message: 'Message updated'
+				});
 			}
 		});
 	} else {
