@@ -1,7 +1,25 @@
 extends layout
 
 block content
-	h1 Prodo
-	p
-		| Welcome to 
-		a(href="#") Prodo
+	h2 Device
+	table.inline
+		thead
+			tr
+				th Name
+				th Online
+		tbody
+			each device in devices
+				tr
+					td=device.name
+					td=device.online ? 'Yes' : 'No'
+	h2 Messages
+	table.inline
+		thead
+			tr
+				th Status
+				th Messages
+		tbody
+			each status in statuses
+				tr
+					td.capitalise=status._id
+					td=status.total
