@@ -158,11 +158,13 @@ pre {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	border-bottom: 1px solid $backgroundGreyTwo;
-	border-top: 1px solid $backgroundGreyTwo;
 	text-align: left;
 	width: 100%;
 	vertical-align: middle;
+	&.inline {
+		width: 40%;
+		table-layout: fixed;
+	}
 	thead {
 		background: $backgroundGreyTwo;
 	}
@@ -173,8 +175,6 @@ table {
 	}
 	th,
 	td {
-		border-left: 1px solid $backgroundGreyTwo;
-		border-right: 1px solid $backgroundGreyTwo;
 		padding: 1em;
 		p {
 			line-height: 1;
