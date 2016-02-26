@@ -35,7 +35,7 @@ block content
 		tbody
 			each message in messages
 				tr
-					td=message.device.name
+					td=message.device && message.device.name
 					td=message.from
 					td=message.to
 					td(title="#{message.created}")=message.date.created
