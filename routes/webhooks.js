@@ -21,7 +21,7 @@ router.get('/', nav, function(req, res, next) {
 	});
 });
 
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', nav, function(req, res, next) {
 	Webhook.findById(req.params.id, function(err, webhook) {
 		if (err) {
 			return next(err);
@@ -91,7 +91,7 @@ router.delete('/:id/remove', function(req, res, next) {
 	});
 });
 
-router.get('/new', function(req, res, next) {
+router.get('/new', nav, function(req, res, next) {
 	res.render('webhooks/new');
 });
 
