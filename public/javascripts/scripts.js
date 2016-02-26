@@ -110,13 +110,9 @@ $(document).ready(function() {
 					AJAX.form(form, function(data) {
 						content.find('p.success').text(data.message);
 
+						window.location.reload();
+
 						clearTimeout(timeout);
-
-						timeout = setTimeout(function() {
-							content.find('p.success').text('');
-
-							window.location.reload();
-						}, 3000);
 					}, function(xhr) {
 						if (xhr.responseJSON) {
 							content.find('p.error').text(xhr.responseJSON.error);
@@ -140,13 +136,9 @@ $(document).ready(function() {
 					AJAX.form(form, function(data) {
 						content.find('p.success').text(data.message);
 
+						window.location.reload();
+
 						clearTimeout(timeout);
-
-						timeout = setTimeout(function() {
-							content.find('p.success').text('');
-
-							window.location.reload();
-						}, 3000);
 					}, function(xhr) {
 						if (xhr.responseJSON) {
 							content.find('p.error').text(xhr.responseJSON.error);
